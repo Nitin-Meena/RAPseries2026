@@ -1,0 +1,14 @@
+projection;
+strict ( 2 );
+
+define behavior for ZNM_C_RAPPartner alias Partner
+{
+  use create;
+  use update;
+  use delete;
+
+  use action fillEmptyStreets;
+  use action clearAllEmptyStreets;
+  use action copyLine;
+  use action withPopup;
+}

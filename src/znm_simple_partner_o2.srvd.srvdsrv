@@ -1,0 +1,4 @@
+@EndUserText.label: 'Simple Partner Service O2'
+define service ZNM_SIMPLE_PARTNER_o2 {
+  expose ZNM_C_RAPPartner as Partner;
+}

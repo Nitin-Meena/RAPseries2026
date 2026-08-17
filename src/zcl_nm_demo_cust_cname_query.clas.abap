@@ -1,0 +1,20 @@
+CLASS zcl_nm_demo_cust_cname_query DEFINITION
+  PUBLIC
+  FINAL
+  CREATE PUBLIC .
+
+  PUBLIC SECTION.
+
+    INTERFACES if_rap_query_provider .
+  PROTECTED SECTION.
+  PRIVATE SECTION.
+ENDCLASS.
+
+
+
+CLASS ZCL_NM_DEMO_CUST_CNAME_QUERY IMPLEMENTATION.
+
+
+  METHOD if_rap_query_provider~select.
+  ENDMETHOD.
+ENDCLASS.
