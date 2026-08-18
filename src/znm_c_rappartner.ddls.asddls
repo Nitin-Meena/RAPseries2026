@@ -14,5 +14,9 @@ define root view entity ZNM_C_RAPPartner
       @Consumption.valueHelpDefinition: [{ entity: { name: 'ZNM_C_CountryVH', element: 'Country' } }]
       Country,
       @Consumption.valueHelpDefinition: [{ entity: { name: 'I_CurrencyStdVH', element: 'Currency' } }]
-      PaymentCurrency
+      PaymentCurrency,
+      LastChangedAt,
+      LastChangedBy,
+      CreatedAt,
+      CreatedBy
 }

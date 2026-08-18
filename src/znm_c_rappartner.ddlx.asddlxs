@@ -5,6 +5,8 @@
     typeNamePlural: 'Partners'
   }
 }
+
+@UI.headerInfo.title: { type: #STANDARD, value: 'PartnerName' }
 annotate view ZNM_C_RAPPartner with
 {
   @UI.facet      : [

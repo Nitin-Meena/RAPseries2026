@@ -1,30 +1,48 @@
 managed implementation in class zbp_nm_demo_rappartner unique;
 strict ( 2 );
+with draft;
 
 define behavior for Znm_I_RAPPartner alias Partner
 persistent table znm_dmo_partner
-lock master
+draft table znm_dmo_dpartner
+lock master total etag LastChangedAt
 authorization master ( instance )
-
+late numbering
+etag master LastChangedAt
 {
   create ( authorization : global );
   update;
-  delete;
-//  field ( mandatory : create ) PartnerNumber;
+  //  delete;
+  delete ( features : global );
 
-validation validateKeyIsFilled on save { create; }
 
-validation validateCoreData on save { create; field Country, PaymentCurrency; }
+  field ( readonly ) PartnerNumber;
 
-determination fillCurrency on modify { create; update; }
+  draft action Resume;
+  draft action Edit;
+  draft action Activate;
+  draft action Discard;
 
-action fillEmptyStreets result [1] $self;
+  draft determine action Prepare
+  {
+    validation validateKeyIsFilled;
+    validation validateCoreData;
+  }
 
-static action clearAllEmptyStreets;
+  validation validateKeyIsFilled on save { create; }
 
-factory action copyLine [1];
+  validation validateCoreData on save { create; field Country, PaymentCurrency; }
 
-static action withPopup parameter Znm_I_PopupEntity;
+  determination fillCurrency on modify { create; update; }
+
+  //  action fillEmptyStreets result [1] $self;
+  action ( features : instance ) fillEmptyStreets result [1] $self;
+
+  static action clearAllEmptyStreets;
+
+  factory action copyLine [1];
+
+  static action withPopup parameter Znm_I_PopupEntity;
 
   mapping for znm_dmo_partner
     {
@@ -34,5 +52,9 @@ static action withPopup parameter Znm_I_PopupEntity;
       City            = city;
       Country         = country;
       PaymentCurrency = payment_currency;
+      LastChangedAt   = last_changed_at;
+      LastChangedBy   = last_changed_by;
+      CreatedAt       = created_at;
+      CreatedBy       = created_by;
     }
 }
